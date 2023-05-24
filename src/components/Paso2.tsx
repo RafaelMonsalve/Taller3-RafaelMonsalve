@@ -2,17 +2,17 @@ import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
 
-const Profesion=()=>{
+const Ocupacion=()=>{
     const ValidacionProfesion = 
     Yup.object({ 
-        instituto:Yup.string().required('La institución es requerida'),
-         carrera: Yup.string().required('La carrera es requerida'), 
+        Empresa:Yup.string().required('La Empresa es requerida'),
+         Puesto: Yup.string().required('La Puesto es requerida'), 
          FechaInicio: Yup.date( ).required('La fecha de inicio es requerida').nullable(), 
          FechaFin: Yup.date() .required('La fecha de fin es requerida') .nullable() .min( Yup.ref('fechaInicio '), 'La fecha de fin debe ser posterior o igual a la fecha de inicio' ), });
         const formik=useFormik({
             initialValues:{
-                instituto:"",
-                carrera:"",
+                Empresa:"",
+                Puesto:"",
                 FechaInicio:"",
                 FechaFin:""
             },
@@ -21,34 +21,34 @@ const Profesion=()=>{
         });
 return(
     <div>
-        <h1>Profesion</h1>
+        <h1>Ocupacion</h1>
         <Form onSubmit={formik.handleSubmit}>
-            <Form.Group controlId="instituto">
-                <Form.Label>Instituto</Form.Label>
+            <Form.Group controlId="Empresa">
+                <Form.Label>Empresa</Form.Label>
                 <Form.Control
-                name="instituto"
+                name="Empresa"
                 type="text"
-                value={formik.values.instituto}
+                value={formik.values.Empresa}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese su instituto"
-                isInvalid={!!formik.errors.instituto && formik.touched.instituto}/>
+                placeholder="Ingrese su Empresa"
+                isInvalid={!!formik.errors.Empresa && formik.touched.Empresa}/>
                 <Form.Control.Feedback type="invalid">
-                    {formik.errors.instituto}
+                    {formik.errors.Empresa}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="carrera">
-                <Form.Label>Carrera</Form.Label>
+            <Form.Group controlId="Puesto">
+                <Form.Label>Puesto</Form.Label>
                 <Form.Control
-                name="carrera"
+                name="Puesto"
                 type="text"
-                value={formik.values.carrera}
+                value={formik.values.Puesto}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese su carrera"
-                isInvalid={!!formik.errors.carrera && formik.touched.carrera}/>
+                isInvalid={!!formik.errors.Puesto && formik.touched.Puesto}/>
                 <Form.Control.Feedback type="invalid">
-                    {formik.errors.carrera}
+                    {formik.errors.Puesto}
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="FechaInicio">
@@ -84,4 +84,4 @@ return(
     </div>
 )
 }
-export default Profesion;
+export default Ocupacion;
