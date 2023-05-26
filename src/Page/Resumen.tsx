@@ -1,9 +1,24 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+
 
 const Resumen = () =>{
+    const dispatch = useDispatch();    
+    const selector = useSelector(state=>state);
+
+    const datosRegistrados = Object.entries(selector);
     return(
         <div>
-            <h2>Resumen</h2>
+            {
+                datosRegistrados.map(([key, value])=>{
+                    return(
+                        <div key={key}>
+                            <h3>{key}</h3>
+                            <p>{value}</p>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }

@@ -1,8 +1,15 @@
 import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Formulario=()=>{
+    
+        const navigate = useNavigate();
+
+        const dispath = useDispatch()
+        
     const ValidacionFormulario=Yup.object({
         nombre:Yup.string().required("El nombre es obligatorio"),
         apellido:Yup.string().required("El apellido es obligatorio"),
@@ -19,7 +26,11 @@ const Formulario=()=>{
                 telefono:""
             },
             validationSchema:ValidacionFormulario,
-            onSubmit:(values)=>{console.log(values)}
+            onSubmit:(values)=>{
+                dispath({type:'AGREGAR_DATOS',
+                payload:values
+            });
+            navigate("/Ocupacion");}
         });
 return(
     <div>

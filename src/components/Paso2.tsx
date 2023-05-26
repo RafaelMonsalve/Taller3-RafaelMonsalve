@@ -1,14 +1,20 @@
 import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Ocupacion=()=>{
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const ValidacionProfesion = 
     Yup.object({ 
         Empresa:Yup.string().required('La Empresa es requerida'),
          Puesto: Yup.string().required('La Puesto es requerida'), 
          FechaInicio: Yup.date( ).required('La fecha de inicio es requerida').nullable(), 
-         FechaFin: Yup.date() .required('La fecha de fin es requerida') .nullable() .min( Yup.ref('fechaInicio '), 'La fecha de fin debe ser posterior o igual a la fecha de inicio' ), });
+         FechaFin: Yup.date().required('La fecha de fin es requerida').nullable().min(Yup.ref('FechaInicio'),'La fecha fin debe ser igual o mayor a la fecha inicio')
+             })
+             
         const formik=useFormik({
             initialValues:{
                 Empresa:"",
@@ -17,7 +23,12 @@ const Ocupacion=()=>{
                 FechaFin:""
             },
             validationSchema:ValidacionProfesion,
-            onSubmit:(values)=>{console.log(values)}
+            onSubmit:(values)=>{
+                dispatch({
+                    type:'AGREGAR_DATOS',
+                    payload:values
+                })
+                navigate("/Profesion");}
         });
 return(
     <div>

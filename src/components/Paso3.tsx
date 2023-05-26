@@ -1,23 +1,35 @@
 import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Profesion=()=>{
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const ValidacionProfesion = 
     Yup.object({ 
         instituto:Yup.string().required('La institución es requerida'),
          carrera: Yup.string().required('La carrera es requerida'), 
-         FechaInicio: Yup.date( ).required('La fecha de inicio es requerida').nullable(), 
-         FechaFin: Yup.date() .required('La fecha de fin es requerida') .nullable() .min( Yup.ref('fechaInicio '), 'La fecha de fin debe ser posterior o igual a la fecha de inicio' ), });
+         FechaInicioP: Yup.date( ).required('La fecha de inicio es requerida').nullable(), 
+         FechaFinP: Yup.date().required('La fecha de fin es requerida').nullable().min(Yup.ref('FechaInicioP'),'La fecha fin debe ser igual o mayor a la fecha inicio')
+        });
         const formik=useFormik({
-            initialValues:{
+            initialValues:{ 
                 instituto:"",
                 carrera:"",
-                FechaInicio:"",
-                FechaFin:""
+                FechaInicioP:"",
+                FechaFinP:""
             },
             validationSchema:ValidacionProfesion,
-            onSubmit:(values)=>{console.log(values)}
+            onSubmit:(values)=>{
+                dispatch({
+                    type:'AGREGAR_DATOS',
+                    payload:values
+                })
+                navigate("/Biografia")}
         });
 return(
     <div>
@@ -54,29 +66,29 @@ return(
             <Form.Group controlId="FechaInicio">
                 <Form.Label>FechaInicio</Form.Label>
                 <Form.Control
-                name="FechaInicio"
+                name="FechaInicioP"
                 type="date"
-                value={formik.values.FechaInicio}
+                value={formik.values.FechaInicioP}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese la fecha de inicio"
-                isInvalid={!!formik.errors.FechaInicio && formik.touched.FechaInicio}/>
+                isInvalid={!!formik.errors.FechaInicioP && formik.touched.FechaInicioP}/>
                 <Form.Control.Feedback type="invalid">
-                {formik.errors.FechaInicio}
+                {formik.errors.FechaInicioP}
                 </Form.Control.Feedback>
                 </Form.Group>
             <Form.Group controlId="FechaFin">
                 <Form.Label>FechaFin</Form.Label>
                 <Form.Control
-                name="FechaFin"
+                name="FechaFinP"
                 type="date"
-                value={formik.values.FechaFin}
+                value={formik.values.FechaFinP}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese ingrese la fecha fin"
-                isInvalid={!!formik.errors.FechaFin && formik.touched.FechaFin}/>
+                isInvalid={!!formik.errors.FechaFinP && formik.touched.FechaFinP}/>
                 <Form.Control.Feedback type="invalid">
-                    {formik.errors.FechaFin}
+                    {formik.errors.FechaFinP}
                 </Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">Siguiente</Button>

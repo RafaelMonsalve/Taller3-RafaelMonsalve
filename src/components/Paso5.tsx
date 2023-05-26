@@ -1,8 +1,14 @@
 import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
+import { useDispatch,useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 
 const Referencias=()=>{
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+    const {selector}=useSelector(state=>state)
     const ValidacionReferencia=Yup.object({
         nombre:Yup.string().required("El nombre es obligatorio"),
         apellido:Yup.string().required("El apellido es obligatorio"),
@@ -30,7 +36,13 @@ const Referencias=()=>{
                 telefono2:""
             },
             validationSchema:ValidacionReferencia,
-            onSubmit:(values)=>{console.log(values)}
+            onSubmit:(values)=>{
+                dispatch({
+                    type:'AGREGAR_DATOS',
+                    payload:values
+                });
+                navigate("/resumen");
+            }
         });
 return(
     <div>
@@ -125,8 +137,8 @@ return(
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                 name="email2"
-                type="email2"
-                value={formik.values.email}
+                type="email"
+                value={formik.values.email2}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese el Email"

@@ -9,12 +9,11 @@ const Wizard = () =>{
     return(
         <div>
             <h2>Wizard</h2>
-            {/*<Formulario />
-            <Ocupacion />
-            <Profesion/>
+            <Formulario />
+            {/*<<Profesion/>
             <Biografia/>
-            <Referencias/>*/}
-            
+            <Referencias/>
+            <Ocupacion />*/}
         </div>
     )
 }

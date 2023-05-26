@@ -1,8 +1,14 @@
 import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Biografia=()=>{
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const ValidacionBiografia=Yup.object({
         Biografia:Yup.string().required("El campo es Obligatorio"),})
         const formik=useFormik({
@@ -10,11 +16,16 @@ const Biografia=()=>{
                 Biografia:""
             },
             validationSchema:ValidacionBiografia,
-            onSubmit:(values)=>{console.log(values)}
+            onSubmit:(values)=>{
+                dispatch({
+                    type:'AGREGAR_DATOS',
+                    payload:values
+                });     
+                navigate("/Referencias");}
         });
 return(
     <div>
-        <h1>Formulario</h1>
+        <h1>Auto Biografia</h1>
         <Form onSubmit={formik.handleSubmit}>
             <Form.Group controlId="Biografia">
                 <Form.Label>Biografia</Form.Label>
