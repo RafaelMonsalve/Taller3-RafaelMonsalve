@@ -7,9 +7,14 @@ import Ocupacion from "./components/Paso2";
 import Profesion from "./components/Paso3";
 import Biografia from "./components/Paso4";
 import Referencias from "./components/Paso5";
+import React from "react";
+import "./App.css"
 
-function App() {
+class  App extends React.Component {
+  render(){
   return (
+    <div className="maincontainer">
+        <div class="py-5">
    <BrowserRouter>
     <Routes>
       <Route path="/" element={<Wizard/>}/>
@@ -22,7 +27,10 @@ function App() {
       <Route path="/Referencias" element={<Referencias/>}/>
     </Routes>
    </BrowserRouter>
+          </div>
+        </div>
   )
+  }
 }
 
 export default App

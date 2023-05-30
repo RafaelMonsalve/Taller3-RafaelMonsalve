@@ -1,12 +1,15 @@
 import { useFormik } from "formik";
-import {Form,Button} from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./Interface/InterFace";
 
 const Ocupacion=()=>{
-    const navigate = useNavigate();
+
+
     const dispatch = useDispatch();
+
+    const selector = useSelector((state:RootState)=>state);
     const ValidacionProfesion = 
     Yup.object({ 
         Empresa:Yup.string().required('La Empresa es requerida'),
@@ -17,10 +20,10 @@ const Ocupacion=()=>{
              
         const formik=useFormik({
             initialValues:{
-                Empresa:"",
-                Puesto:"",
-                FechaInicio:"",
-                FechaFin:""
+                Empresa:selector.Empresa,
+                Puesto:selector.Puesto,
+                FechaInicio:selector.FechaInicio,
+                FechaFin:selector.FechaFin
             },
             validationSchema:ValidacionProfesion,
             onSubmit:(values)=>{
@@ -28,7 +31,7 @@ const Ocupacion=()=>{
                     type:'AGREGAR_DATOS',
                     payload:values
                 })
-                navigate("/Profesion");}
+                alert('Ocupacion Guardada con exito');}
         });
 return(
     <div>
@@ -43,7 +46,8 @@ return(
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese su Empresa"
-                isInvalid={!!formik.errors.Empresa && formik.touched.Empresa}/>
+                isInvalid={!!formik.errors.Empresa && formik.touched.Empresa}
+                isValid={formik.touched.Empresa && !formik.errors.Empresa}/>
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.Empresa}
                 </Form.Control.Feedback>
@@ -57,7 +61,9 @@ return(
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese su carrera"
-                isInvalid={!!formik.errors.Puesto && formik.touched.Puesto}/>
+                isInvalid={!!formik.errors.Puesto && formik.touched.Puesto}
+                isValid={formik.touched.Puesto && !formik.errors.Puesto}/>
+                
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.Puesto}
                 </Form.Control.Feedback>
@@ -71,7 +77,9 @@ return(
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese la fecha de inicio"
-                isInvalid={!!formik.errors.FechaInicio && formik.touched.FechaInicio}/>
+                isInvalid={!!formik.errors.FechaInicio && formik.touched.FechaInicio}
+                isValid={formik.touched.FechaInicio && !formik.errors.FechaInicio}/>
+                
                 <Form.Control.Feedback type="invalid">
                 {formik.errors.FechaInicio}
                 </Form.Control.Feedback>
@@ -85,12 +93,13 @@ return(
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese ingrese la fecha fin"
-                isInvalid={!!formik.errors.FechaFin && formik.touched.FechaFin}/>
+                isInvalid={!!formik.errors.FechaFin && formik.touched.FechaFin}
+                isValid={formik.touched.FechaFin && !formik.errors.FechaFin}/>                
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.FechaFin}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" type="submit">Siguiente</Button>
+            <Button variant="success" type="submit">Guardar</Button>
         </Form>
     </div>
 )

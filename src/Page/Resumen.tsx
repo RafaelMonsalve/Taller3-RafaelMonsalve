@@ -1,25 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../components/Interface/InterFace";
 
+const Resumen: React.FC = () => {
+  
+  const selector = useSelector((state: RootState) => state);
 
+  const datosRegistrados = Object.entries(selector);
 
-const Resumen = () =>{
-    const dispatch = useDispatch();    
-    const selector = useSelector(state=>state);
+  return (
+    <>
+      <center>
+        <h1>Resumen</h1>
+      </center>
+      {datosRegistrados.map(([key, value]) => {
+        return (
+          <>
+            <center>
+              <h1></h1>
+              <table>
+                <th>{key}:</th>
+                <td>{value}</td>
+              </table>
+            </center>
+          </>
+        );
+      })}
+    </>
+  );
+};
 
-    const datosRegistrados = Object.entries(selector);
-    return(
-        <div>
-            {
-                datosRegistrados.map(([key, value])=>{
-                    return(
-                        <div key={key}>
-                            <h3>{key}</h3>
-                            <p>{value}</p>
-                        </div>
-                    )
-                })
-            }
-        </div>
-    )
-}
 export default Resumen;

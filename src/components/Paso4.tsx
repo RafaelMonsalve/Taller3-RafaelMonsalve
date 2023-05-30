@@ -2,18 +2,20 @@ import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
+import { RootSate } from "./Interface/InterFace";
 
 const Biografia=()=>{
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const selector = useSelector((state:RootSate)=>state);
 
     const ValidacionBiografia=Yup.object({
         Biografia:Yup.string().required("El campo es Obligatorio"),})
         const formik=useFormik({
             initialValues:{
-                Biografia:""
+                Biografia:selector.Biografia
             },
             validationSchema:ValidacionBiografia,
             onSubmit:(values)=>{
@@ -21,7 +23,7 @@ const Biografia=()=>{
                     type:'AGREGAR_DATOS',
                     payload:values
                 });     
-                navigate("/Referencias");}
+                alert('Biografia Guardada con exito');}
         });
 return(
     <div>
@@ -36,12 +38,13 @@ return(
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Ingrese su Biografia"
-                isInvalid={!!formik.errors.Biografia && formik.touched.Biografia}/>
+                isInvalid={!!formik.errors.Biografia && formik.touched.Biografia}
+                isValid={formik.touched.Biografia && !formik.errors.Biografia}/>
                 <Form.Control.Feedback type="invalid">
                     {formik.errors.Biografia}
                 </Form.Control.Feedback>
             </Form.Group>
-                    <Button variant="primary" type="submit">Siguiente</Button>
+            <Button variant="success" type="submit">Guardar</Button>
         </Form>
     </div>
 )
