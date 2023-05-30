@@ -10,15 +10,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@reduxjs/toolkit": "^1.9.5",
+=======
+>>>>>>> d4705df9650092c4cf891ccd37483125ba055e1a
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.2",
     "react-switch": "^7.0.0",
+=======
+    "react-router-dom": "^6.11.2",
+>>>>>>> d4705df9650092c4cf891ccd37483125ba055e1a
     "yup": "^1.1.1"
   },
   "devDependencies": {
