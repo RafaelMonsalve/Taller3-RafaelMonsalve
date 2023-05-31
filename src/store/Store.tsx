@@ -1,4 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import formularioSlice from '../Slice/Slice';
+import OcupacionSlice from '../Slice/SliceOcupacion';
+import ProfesionSlice from '../Slice/SliceProfesion'
+import BiografiaSlice from '../Slice/SliceBiografia'
+import ReferenciaSlice from '../Slice/SliceReferencias'
 
 const initialValue = {
     nombre:"",
@@ -24,14 +29,14 @@ const initialValue = {
     telefono3:""
 }
 
-const reducer = (state = initialValue,action: { type: any; payload: any; }) =>{
-    switch (action.type){
-        case"AGREGAR_DATOS":
-        return {...state,...action.payload};
-        default:
-            return {};
-    }
-    
-}
-const store = configureStore({reducer});
-export default store;
+const store = configureStore({
+    reducer: {
+      formulario: formularioSlice,
+      Ocupacion: OcupacionSlice,
+      Profesion:ProfesionSlice,
+      Texto:BiografiaSlice,
+      Referencias:ReferenciaSlice,
+    },
+  });
+  
+  export default store;

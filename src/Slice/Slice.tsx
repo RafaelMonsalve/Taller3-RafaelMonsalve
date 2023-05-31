@@ -7,6 +7,7 @@ const initialState: RootState = {
   apellido: "",
   email: "",
   telefono: "",
+  formulario: undefined
 };
 
 const formularioSlice = createSlice({

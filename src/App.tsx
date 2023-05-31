@@ -14,7 +14,6 @@ class  App extends React.Component {
   render(){
   return (
     <div className="maincontainer">
-        <div class="py-5">
    <BrowserRouter>
     <Routes>
       <Route path="/" element={<Wizard/>}/>
@@ -28,7 +27,6 @@ class  App extends React.Component {
     </Routes>
    </BrowserRouter>
           </div>
-        </div>
   )
   }
 }

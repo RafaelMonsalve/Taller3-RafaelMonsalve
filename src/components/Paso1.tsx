@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./Interface/InterFace2";
+import { agregarDatos } from "../Slice/Slice";
 
 
 const Formulario = () => {
@@ -33,11 +34,10 @@ const Formulario = () => {
     },
     validationSchema: ValidacionFormulario,
     onSubmit: (values) => {
-      dispatch({
-        type: "AGREGAR_DATOS",
-        payload: values,});
+      dispatch(agregarDatos(values));
       alert('Datos Personales guardados con exito');
     },
+  
   });
 
   return (

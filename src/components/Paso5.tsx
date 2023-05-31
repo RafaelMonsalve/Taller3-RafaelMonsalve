@@ -2,11 +2,12 @@ import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
 import { useDispatch,useSelector } from "react-redux";
-import { RootState } from "./Interface/InterFace";
+import { RootState1 } from "./Interface/InterFace";
+import { agregarDatos } from "../Slice/SliceReferencias";
 
 const Referencias=()=>{
     const dispatch=useDispatch();
-     const selector=useSelector((state:RootState)=>state)
+     const selector=useSelector((state:RootState1)=>state)
     const ValidacionReferencia=Yup.object({
         nombre3:Yup.string().required("El nombre es obligatorio"),
         apellido3:Yup.string().required("El apellido es obligatorio"),
@@ -35,10 +36,7 @@ const Referencias=()=>{
             },
             validationSchema:ValidacionReferencia,
             onSubmit:(values)=>{
-                dispatch({
-                    type:'AGREGAR_DATOS',
-                    payload:values
-                });
+                dispatch(agregarDatos(values));
                 alert("Referencias Guardadas con Exito");
             }
         });

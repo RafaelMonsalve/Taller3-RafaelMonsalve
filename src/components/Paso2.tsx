@@ -2,14 +2,15 @@ import { useFormik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./Interface/InterFace";
+import { RootState2 } from "./Interface/Interface4";
+import { agregarDatos } from "../Slice/SliceOcupacion";
 
 const Ocupacion=()=>{
 
 
     const dispatch = useDispatch();
 
-    const selector = useSelector((state:RootState)=>state);
+    const selector = useSelector((state:RootState2)=>state);
     const ValidacionProfesion = 
     Yup.object({ 
         Empresa:Yup.string().required('La Empresa es requerida'),
@@ -27,10 +28,7 @@ const Ocupacion=()=>{
             },
             validationSchema:ValidacionProfesion,
             onSubmit:(values)=>{
-                dispatch({
-                    type:'AGREGAR_DATOS',
-                    payload:values
-                })
+                dispatch(agregarDatos(values))
                 alert('Ocupacion Guardada con exito');}
         });
 return(

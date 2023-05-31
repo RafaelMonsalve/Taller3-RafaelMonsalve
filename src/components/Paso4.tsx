@@ -2,12 +2,13 @@ import { useFormik } from "formik";
 import {Form,Button} from "react-bootstrap";
 import * as Yup from "yup";
 import { useDispatch,useSelector} from "react-redux";
-import { RootState } from "./Interface/InterFace";
+import { RootState5 } from "./Interface/InterFace5";
+import { agregarDatos } from "../Slice/SliceBiografia";
 
 const Biografia=()=>{
 
     const dispatch = useDispatch();
-    const selector = useSelector((state:RootState)=>state);
+    const selector = useSelector((state:RootState5)=>state);
 
     const ValidacionBiografia=Yup.object({
         Biografia:Yup.string().required("El campo es Obligatorio"),})
@@ -17,10 +18,7 @@ const Biografia=()=>{
             },
             validationSchema:ValidacionBiografia,
             onSubmit:(values)=>{
-                dispatch({
-                    type:'AGREGAR_DATOS',
-                    payload:values
-                });     
+                dispatch(agregarDatos(values))    
                 alert('Biografia Guardada con exito');}
         });
 return(
