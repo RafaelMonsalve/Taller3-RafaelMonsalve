@@ -4,6 +4,7 @@ import { RootState2 } from "../components/Interface/Interface4";
 import { RootState3 } from "../components/Interface/InterFace3";
 import { RootState5 } from "../components/Interface/InterFace5";
 import { RootState1 } from "../components/Interface/InterFace";
+import Accordion from 'react-bootstrap/Accordion';
 
 
 const Resumen = () => {
@@ -25,40 +26,65 @@ const Resumen = () => {
 
   return (
     <>
-      <h1>Resumen</h1>
-      <h2>Datos Basicos</h2>
-      <p>Nombre: {nombre}</p>
-      <p>Apellido: {apellido}</p>
-      <p>Email: {email}</p>
-      <p>Teléfono: {telefono}</p>
-        
-      <h2>Ocupacion</h2> 
-      <p>Empresa: {Empresa}</p>
-      <p>Puesto: {Puesto}</p>
-      <p>FechaInicio: {FechaInicio}</p>
-      <p>FechaFin: {FechaFin}</p>
-       
-      <h2>Profesion</h2> 
+    <h1>Resumen</h1>
+     <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>Datos Basicos</Accordion.Header>
+        <Accordion.Body>
+        <p>Nombre: {nombre}</p>
+        <p>Apellido: {apellido}</p>
+        <p>Email: {email}</p>
+        <p>Teléfono: {telefono}</p>
+        </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>    
+        <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>Ocupacion</Accordion.Header>
+        <Accordion.Body>
+        <p>Empresa: {Empresa}</p>
+        <p>Puesto: {Puesto}</p>
+        <p>FechaInicio: {FechaInicio}</p>
+        <p>FechaFin: {FechaFin}</p>
+        </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
+        <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>Profesion</Accordion.Header>
+      <Accordion.Body> 
       <p>instituto: {instituto}</p>
       <p>carrera: {carrera}</p>
       <p>FechaInicioP: {FechaInicioP}</p>
       <p>FechaFinP: {FechaFinP}</p>
-
-      <h2>Biografia</h2>
+      </Accordion.Body>
+      </Accordion.Item>
+      </Accordion>
+      <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>Biografia</Accordion.Header>
+      <Accordion.Body>
       <p>{Biografia}</p> 
-
-      <h2>Referencias</h2>
+      </Accordion.Body>
+      </Accordion.Item>
+      </Accordion>
+      <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="1">
+      <Accordion.Header>Referencias</Accordion.Header>
+      <Accordion.Body>
       <h3>Referencia 1</h3>  
       <p>Nombre: {nombre3}</p>
       <p>Apellido: {apellido3}</p>
       <p>Email: {email3}</p>
       <p>Teléfono: {telefono3}</p>
-
       <h3>Referencia 2</h3>  
       <p>Nombre: {nombre2}</p>
       <p>Apellido: {apellido2}</p>
       <p>Email: {email2}</p>
       <p>Teléfono: {telefono2}</p>
+      </Accordion.Body>
+      </Accordion.Item>
+      </Accordion>      
     </>
   );
 };
