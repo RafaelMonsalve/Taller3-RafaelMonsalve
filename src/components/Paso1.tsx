@@ -11,8 +11,8 @@ const Formulario = () => {
   const dispatch = useDispatch();
 
   const selector = useSelector((state: RootState) => state);
- 
 
+ 
   const ValidacionFormulario = Yup.object({
     nombre: Yup.string().required("El nombre es obligatorio"),
     apellido: Yup.string().required("El apellido es obligatorio"),
@@ -42,7 +42,7 @@ const Formulario = () => {
 
   return (
     <div>
-      <h1>Formulario</h1>
+      <h1>Datos Basicos</h1>
       <Form onSubmit={formik.handleSubmit}>
         <Form.Group controlId="nombre">
           <Form.Label>Nombre</Form.Label>

@@ -8,7 +8,8 @@ import Profesion from "./components/Paso3";
 import Biografia from "./components/Paso4";
 import Referencias from "./components/Paso5";
 import React from "react";
-import "./App.css"
+import 'bootstrap/dist/css/bootstrap.css'
+
 
 class  App extends React.Component {
   render(){
