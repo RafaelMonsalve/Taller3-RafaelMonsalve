@@ -9,13 +9,13 @@ import Biografia from "./components/Paso4";
 import Referencias from "./components/Paso5";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css'
+import './App.css'
 
 
 
 class  App extends React.Component {
   render(){
   return (
-    <div className="maincontainer">
    <BrowserRouter>
     <Routes>
       <Route path="/" element={<Wizard/>}/>
@@ -28,8 +28,7 @@ class  App extends React.Component {
       <Route path="/Referencias" element={<Referencias/>}/>
     </Routes>
    </BrowserRouter>
-          </div>
-  )
+       )
   }
 }
 
